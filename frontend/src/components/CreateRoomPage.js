@@ -35,20 +35,20 @@ export default class CreateRoomPage extends Component {
     };
     fetch('/api/create-room', requestOptions)
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => this.props.history.push("/room/" + data.code));
   }
 
   render () {
     return (
     <Grid container spacing={1}>
         <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
+          <Typography element="h4" variant="h4">
             Create A Room
           </Typography>
         </Grid>
         <Grid item xs={12} align="center">
-          <FormControl component="fieldset">
-            <FormHelperText component="div" align="center">
+          <FormControl element="fieldset">
+            <FormHelperText element="div" align="center">
               Guest Control of Playback State
             </FormHelperText>
             <RadioGroup
@@ -98,7 +98,7 @@ export default class CreateRoomPage extends Component {
           </Button>
         </Grid>
         <Grid item xs={12} align="center">
-          <Button color="secondary" variant="contained" to="/" component={Link}>
+          <Button color="secondary" variant="contained" to="/" element={Link}>
             Back
           </Button>
         </Grid>
