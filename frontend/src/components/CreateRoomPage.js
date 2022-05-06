@@ -1,27 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import {Button, Grid, Typography, TextField, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel} from "@mui/material"
 
-export default class CreateRoomPage extends Component {
-  defaultVotes = 2;
-  constructor(props) {
-    super(props);
-    this.state = {
-      guestCanPause: true,
-      votesToSkip: this.defaultVotes
-    };
-  }
+const CreateRoomPage = (props) => {
+  const defaultVotes = 2;
+  const [guestCanPause, setGuestCanPause] = useState(true);
+  const [votesToSkip, setVotes] = useState(2);
+
+
 
   handleVotesChange = (e) => {
-    this.setState({
-      votesToSkip: e.target.value
-    });
+    this.setVotes(e.target.value);
   }
 
   handleGuestCanPauseChange = (e) => {
-    this.setState({
-      guestCanPause: e.target.value === 'true' ? true : false
-    });
+    this.setGuestCanPause(e.target.value === 'true' ? true : false);
   }
 
   handleRoomButtonPressed = () => {
@@ -37,8 +30,6 @@ export default class CreateRoomPage extends Component {
     .then((response) => response.json())
     .then((data) => useNavigate("/room/" + data.code));
   }
-
-  render () {
     return (
     <Grid container spacing={1}>
         <Grid item xs={12} align="center">
@@ -76,8 +67,8 @@ export default class CreateRoomPage extends Component {
             <TextField
               required={true}
               type="number"
-              onChange={this.handleVotesChange}
-              defaultValue={this.defaultVotes}
+              onChange={handleVotesChange(e)}
+              defaultValue={defaultVotes}
               inputProps={{
                 min: 1,
                 style: { textAlign: "center" },
@@ -92,7 +83,7 @@ export default class CreateRoomPage extends Component {
           <Button
             color="primary"
             variant="contained"
-            onClick={this.handleRoomButtonPressed}
+            onClick={handleRoomButtonPressed}
           >
             Create A Room
           </Button>
@@ -104,5 +95,6 @@ export default class CreateRoomPage extends Component {
         </Grid>
       </Grid>
     );
-  }
 }
+
+export default CreateRoomPage;
