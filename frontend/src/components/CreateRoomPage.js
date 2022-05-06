@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {Button, Grid, Typography, TextField, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel} from "@mui/material"
 
 export default class CreateRoomPage extends Component {
@@ -35,7 +35,7 @@ export default class CreateRoomPage extends Component {
     };
     fetch('/api/create-room', requestOptions)
     .then((response) => response.json())
-    .then((data) => this.props.history.push("/room/" + data.code));
+    .then((data) => useNavigate("/room/" + data.code));
   }
 
   render () {
@@ -98,7 +98,7 @@ export default class CreateRoomPage extends Component {
           </Button>
         </Grid>
         <Grid item xs={12} align="center">
-          <Button color="secondary" variant="contained" to="/" element={Link}>
+          <Button color="secondary" variant="contained" component={Link} to="/" >
             Back
           </Button>
         </Grid>

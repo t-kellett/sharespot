@@ -3,6 +3,7 @@ import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
 import {Grid, Button, ButtonGroup, Typography } from "@mui/material"
 import {BrowserRouter as Router, Link, Navigate, Routes, Route} from "react-router-dom";
+import { Box } from "@mui/system";
 
 export default class HomePage extends Component {
 
@@ -24,23 +25,25 @@ export default class HomePage extends Component {
 
   renderHomePage = () => {
     return (
-      <Grid container spacing={ 3 }>
-        <Grid item xs={12} align="center">
+      <Grid container spacing={3}>
+        <Grid item xs={12} align="center" >
           <Typography variant="h3" compact="h3">
             Sharespot
           </Typography>
         </Grid>
         <Grid item xs={12} align="center">
-          <ButtonGroup disableElevation variant="contained" color="primary">
-            <Button color="primary" to="/join" element={ Link }>
+          <ButtonGroup variant="contained" color="primary">
+            <Button color="primary" component={Link} to="/join" >
               Join a Room
             </Button>
-            <Button color="secondary" to="/create-room" element={ Link }>
+            <Button color="secondary" component={ Link } to="/create-room" >
               Create a Room
             </Button>
           </ButtonGroup>
         </Grid>
       </Grid>
+
+      
     );
   }
 
